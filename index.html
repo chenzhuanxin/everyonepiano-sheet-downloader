@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>人人钢琴网 · 免费曲谱下载器 —— 使用说明</title>
+<meta name="description" content="人人钢琴网（everyonepiano.cn）免费曲谱下载器使用说明：只下载免 VIP 的 EOP / EOPM / 五线谱大图PNG / 双手简谱大图PNG，图形面板，自填 Cookie、自选目录、自定节奏。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F131B'/%3E%3Cg stroke='%232C3546' stroke-width='1.3'%3E%3Cpath d='M6 11.5h20M6 15.5h20M6 19.5h20M6 23.5h20'/%3E%3C/g%3E%3Ccircle cx='19.5' cy='19' r='3.8' fill='%23D8A441'/%3E%3Cpath d='M23.3 19V9' stroke='%23D8A441' stroke-width='1.9' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+/* ===== 设计令牌：蓝黑墨 + 黄铜，取自五线谱与琴键铜件 ===== */
+:root{
+  --ink:#0F131B;
+  --panel:#161C27;
+  --panel-2:#1B2230;
+  --rule:#2C3546;
+  --line:#3B4658;
+  --text:#E8E5DE;
+  --muted:#98A2B1;
+  --brass:#D8A441;
+  --brass-dim:#8A6A2A;
+  --free:#6EAE7A;
+  --vip:#78818F;
+  --sans:'Noto Sans SC','Microsoft YaHei UI','PingFang SC',system-ui,sans-serif;
+  --serif:'Noto Serif SC','Songti SC','SimSun',serif;
+  --mono:ui-monospace,Consolas,'Cascadia Mono',Menlo,monospace;
+  --maxw:1000px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ink);color:var(--text);
+  font-family:var(--sans);font-weight:400;font-size:16px;line-height:1.75;
+  background-image:
+    linear-gradient(180deg,rgba(216,164,65,.05),transparent 420px),
+    repeating-linear-gradient(180deg,transparent 0 23px,rgba(255,255,255,.017) 23px 24px);
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+a{color:var(--brass);text-decoration:none;border-bottom:1px solid rgba(216,164,65,.35)}
+a:hover{border-bottom-color:var(--brass)}
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.3;margin:0}
+code,kbd{font-family:var(--mono);font-size:.9em;background:rgba(255,255,255,.05);
+  border:1px solid var(--rule);border-radius:4px;padding:1px 5px;color:#EADFC8}
+pre{margin:0;overflow-x:auto;background:#0B0E15;border:1px solid var(--rule);border-radius:8px;
+  padding:18px 20px;font-family:var(--mono);font-size:13.5px;line-height:1.7;color:#CBD3DE}
+pre .c{color:var(--muted)}
+pre .k{color:var(--brass)}
+
+/* ===== 封面 ===== */
+header.hero{padding:74px 0 56px;border-bottom:1px solid var(--rule)}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:.04em;
+  color:var(--muted);border:1px solid var(--rule);border-radius:999px;padding:5px 13px;margin-bottom:26px}
+.badge i{width:6px;height:6px;border-radius:50%;background:var(--free);display:block}
+.hero h1{font-size:clamp(30px,5.2vw,50px);font-weight:900;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--brass)}
+.lead{margin:20px 0 0;max-width:60ch;font-size:17px;color:#CFD5DF}
+.lead b{color:var(--text);font-weight:700;box-shadow:inset 0 -9px 0 rgba(216,164,65,.16)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:32px 0 0}
+.btn{display:inline-flex;align-items:center;gap:9px;border-radius:8px;padding:12px 20px;
+  font-size:15px;font-weight:500;border:1px solid var(--brass);color:#1A1408;background:var(--brass);
+  transition:transform .15s ease,box-shadow .15s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(216,164,65,.22)}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--brass);color:var(--brass);box-shadow:none}
+.btn svg{width:16px;height:16px;flex:none}
+.facts{display:flex;flex-wrap:wrap;gap:10px 26px;margin:30px 0 0;padding:18px 0 0;
+  border-top:1px solid var(--rule);font-size:13.5px;color:var(--muted)}
+.facts span::before{content:"—";margin-right:8px;color:var(--brass-dim)}
+
+/* ===== 通用区块 ===== */
+section{padding:64px 0;border-bottom:1px solid var(--rule)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--brass-dim);margin:0 0 12px}
+section h2{font-size:clamp(22px,3.2vw,30px);margin-bottom:14px}
+.sub{color:var(--muted);max-width:76ch;margin:0 0 34px;font-size:15.5px}
+
+/* ===== 五线谱步骤 ===== */
+.steps{position:relative;display:grid;grid-template-columns:repeat(5,1fr);margin:6px 0 0}
+.steps::before{content:"";position:absolute;left:0;right:0;top:84px;height:21px;pointer-events:none;
+  background:repeating-linear-gradient(to bottom,var(--line) 0 1px,transparent 1px 5px)}
+.step{position:relative;padding:120px 12px 0;text-align:center}
+.dot{position:absolute;top:85px;left:50%;width:18px;height:18px;margin-left:-9px;border-radius:50%;
+  background:var(--brass);color:#1A1408;font:700 11px/18px var(--sans);text-align:center;z-index:1}
+.dot::after{content:"";position:absolute;left:8px;bottom:16px;width:1.5px;height:28px;
+  background:var(--brass);opacity:.5}
+.step h3{font-size:16px;margin-bottom:6px}
+.step p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.65}
+
+/* ===== 免费 / VIP 对照 ===== */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{border:1px solid var(--rule);border-radius:10px;padding:22px 24px;background:var(--panel)}
+.card h3{font-size:17px;display:flex;align-items:center;gap:9px;margin-bottom:14px}
+.card h3::before{content:"";width:9px;height:9px;border-radius:50%;flex:none}
+.card.yes h3::before{background:var(--free)}
+.card.no h3::before{background:var(--vip)}
+.card.yes{border-color:rgba(110,174,122,.32)}
+.card.no{border-color:rgba(120,129,143,.28)}
+.fmt{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;padding:0;list-style:none}
+.fmt li{font-family:var(--mono);font-size:12.5px;padding:4px 10px;border-radius:5px;border:1px solid var(--rule)}
+.card.yes .fmt li{color:#BFE3C6;border-color:rgba(110,174,122,.3);background:rgba(110,174,122,.07)}
+.card.no .fmt li{color:var(--vip);text-decoration:line-through}
+.card p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.7}
+.card p + p{margin-top:10px}
+
+/* ===== 尺寸对照 ===== */
+.spec{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:26px 0 0;padding:0;list-style:none}
+.spec li{border:1px solid var(--rule);border-radius:8px;padding:16px 18px;background:var(--panel-2)}
+.spec b{display:block;font-size:14.5px;margin-bottom:4px}
+.spec span{display:block;font-size:13px;color:var(--muted);font-family:var(--mono)}
+
+/* ===== 截图 ===== */
+figure{margin:0 0 32px}
+figure img{width:100%;height:auto;display:block;border-radius:10px;border:1px solid var(--line);
+  box-shadow:0 22px 48px -22px rgba(0,0,0,.9)}
+figcaption{margin-top:12px;font-size:13px;color:var(--muted)}
+
+/* ===== 表格 ===== */
+table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:14.5px}
+th,td{text-align:left;vertical-align:top;padding:13px 14px;border-bottom:1px solid var(--rule);line-height:1.7}
+thead th{font-size:12.5px;letter-spacing:.06em;color:var(--muted);font-weight:500;
+  border-bottom:1px solid var(--line);padding-bottom:9px}
+tbody tr:hover{background:rgba(255,255,255,.017)}
+td:first-child{color:var(--text);font-weight:500}
+td.ctrl{color:#CBD3DE}
+
+/* ===== 范围两种 ===== */
+.modes{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:0;padding:0;list-style:none}
+.mode{border:1px solid var(--rule);border-left:3px solid var(--brass-dim);border-radius:8px;
+  padding:16px 18px;background:var(--panel)}
+.mode b{display:block;font-size:15px;margin-bottom:5px;font-weight:700}
+.mode span{display:block;font-size:13.5px;color:var(--muted);line-height:1.65}
+.mode code{margin-top:9px;display:inline-block}
+
+/* ===== FAQ ===== */
+details{border-bottom:1px solid var(--rule);padding:4px 0}
+details summary{cursor:pointer;padding:14px 30px 14px 0;font-weight:500;position:relative;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";position:absolute;right:6px;top:13px;color:var(--brass);
+  font-family:var(--mono);font-size:17px;line-height:1.4}
+details[open] summary::after{content:"–"}
+details p{margin:0 0 16px;padding-right:30px;color:var(--muted);font-size:14.5px}
+details p b{color:#D5DBE4;font-weight:500}
+
+/* ===== 页脚 ===== */
+footer{padding:52px 0 72px;color:var(--muted);font-size:13.5px}
+footer p{margin:0 0 12px;max-width:76ch}
+footer .links{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;padding-top:22px;border-top:1px solid var(--rule)}
+
+@media (max-width:820px){
+  .split{grid-template-columns:1fr}
+  .modes{grid-template-columns:1fr}
+  .spec{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  body{font-size:16px}
+  header.hero{padding:52px 0 42px}
+  section{padding:48px 0}
+  .step p,.facts,.mode span,.spec span,figcaption,.card p{font-size:14px}
+  .badge{font-size:13px}
+  details p{font-size:15px}
+  footer .links a{display:inline-flex;align-items:center;min-height:44px;padding:0 6px}
+  .steps{grid-template-columns:1fr}
+  .steps::before{display:none}
+  .step{padding:0 0 26px 46px;text-align:left;border-left:1px solid var(--rule)}
+  .dot{top:6px;left:8px;margin-left:0}
+  .dot::after{display:none}
+  table,thead,tbody,tr,td,th{display:block;width:auto}
+  thead{display:none}
+  tbody tr{border-bottom:1px solid var(--rule);padding:14px 0}
+  td{border:none;padding:2px 0}
+  td:first-child{font-size:12px;letter-spacing:.06em;color:var(--brass);text-transform:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="hero">
+  <span class="badge"><i></i>公开仓库 · 只用 Python 标准库</span>
+  <h1>人人钢琴网 · <em>免费曲谱下载器</em></h1>
+  <p class="lead">
+    把 <b>everyonepiano.cn</b> 上不需要 VIP 的曲谱成批搬到本地硬盘。
+    图形面板自己填 Cookie、自己选目录、自己定请求节奏；
+    下载的是 <b>2500×3400 的完整五线谱大图</b>，不是列表页那种小缩略图。
+    需要 VIP 的 <b>MP3 / PDF / EOPN / MIDI</b> 一律不下载，工具里也没有任何绕过付费的逻辑。
+  </p>
+  <div class="cta">
+    <a class="btn" href="https://github.com/chenzhuanxin/everyonepiano-sheet-downloader/releases/latest/download/PianoSheetDownloader.exe">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>
+      下载 exe（约 10.7 MB）
+    </a>
+    <a class="btn ghost" href="https://github.com/chenzhuanxin/everyonepiano-sheet-downloader">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4 1.5-4-2.5-6-3"/><path d="M15 21v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+      查看源码
+    </a>
+  </div>
+  <div class="facts">
+    <span>Windows 10 / 11 64 位，单文件免安装</span>
+    <span>五线谱大图 2500×3400 · 双手简谱大图 2381×3368</span>
+    <span>全站约 2 万首，按编号分批下，随时能停</span>
+  </div>
+</header>
+
+<!-- ===== 步骤：五步走在五线谱上 ===== -->
+<section>
+  <p class="eyebrow">GETTING STARTED</p>
+  <h2>上手五步</h2>
+  <p class="sub">下载、双击、设目录、填 Cookie、点开始。整个流程不需要懂命令行，也不需要装 Python。</p>
+  <div class="steps">
+    <div class="step">
+      <span class="dot">1</span>
+      <h3>下载 exe</h3>
+      <p>从仓库的 Releases 页取 <code>PianoSheetDownloader.exe</code>，放到自己顺手的位置。</p>
+    </div>
+    <div class="step">
+      <span class="dot">2</span>
+      <h3>双击运行</h3>
+      <p>免安装，双击即开。首次启动要解包，比之后慢几秒属正常。</p>
+    </div>
+    <div class="step">
+      <span class="dot">3</span>
+      <h3>设目录</h3>
+      <p>默认存到 <code>D:\人人钢琴曲谱数据</code>；点“浏览…”改成你想要的位置。</p>
+    </div>
+    <div class="step">
+      <span class="dot">4</span>
+      <h3>填 Cookie</h3>
+      <p>那一格默认是空的，就是留给你的。留空也能下免费内容，先空着跑即可。</p>
+    </div>
+    <div class="step">
+      <span class="dot">5</span>
+      <h3>选范围，开始</h3>
+      <p>按编号区间或指定编号，点“开始下载”；进度、日志实时刷新。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 免费 / VIP 对照 ===== -->
+<section>
+  <p class="eyebrow">WHAT YOU GET</p>
+  <h2>能下什么，不能下什么</h2>
+  <p class="sub">同一个曲谱页上挂着八种文件，其中四种免费、四种要会员。工具只抓免费的那一半。</p>
+  <div class="split">
+    <div class="card yes">
+      <h3>会下载的四种（免 VIP）</h3>
+      <ul class="fmt">
+        <li>五线谱大图PNG</li><li>双手简谱大图PNG</li><li>EOP</li><li>EOPM</li>
+      </ul>
+      <p>大图是完整的曲谱扫描件，每页一张 PNG，可以直接看、也可以打印；
+         EOP 是曲子本体文件，用 EOP 软件能跟着弹，EOPM 是配套的指法／教程包。</p>
+      <p>这四类在线时通常不登录也能取到，所以 Cookie 栏留空就能开工。</p>
+    </div>
+    <div class="card no">
+      <h3>不会下载的四种（需 VIP）</h3>
+      <ul class="fmt">
+        <li>MP3</li><li>PDF</li><li>EOPN</li><li>MIDI</li>
+      </ul>
+      <p>这四类在页面上只有“购买 VIP 会员”的入口，没有下载链接。
+         工具干脆不去请求它们——不猜地址、不试接口、不做任何绕过付费内容的尝试。</p>
+    </div>
+  </div>
+  <ul class="spec">
+    <li><b>五线谱大图</b><span>2500 × 3400 px　约 100–150 KB / 页</span></li>
+    <li><b>双手简谱大图</b><span>2381 × 3368 px　约 60–260 KB / 页</span></li>
+    <li><b>EOP 文件</b><span>.eop　约 12–44 KB</span></li>
+    <li><b>EOPM 文件</b><span>.eopm　约 18–38 KB</span></li>
+  </ul>
+</section>
+
+<!-- ===== 界面说明 ===== -->
+<section>
+  <p class="eyebrow">THE PANEL</p>
+  <h2>界面上的每一块</h2>
+  <p class="sub">面板从上到下就是一次完整的下载流程，所有选项都摆在明面上，没有藏在菜单里的开关。</p>
+  <figure>
+    <img src="assets/gui-preview.png" alt="下载器主界面：账号 Cookie、保存目录、下载内容、下载范围、节奏与重试、按钮组、进度条与运行日志">
+    <figcaption>程序主界面。下载目录默认 <code>D:\人人钢琴曲谱数据</code>，四种免费内容默认全勾，Cookie 框留空。</figcaption>
+  </figure>
+  <table>
+    <colgroup><col style="width:20%"><col style="width:26%"><col style="width:54%"></colgroup>
+    <thead><tr><th>区域</th><th>作用</th><th>怎么用</th></tr></thead>
+    <tbody>
+      <tr><td>账号（可选）</td><td>被站点拦时的登录态</td><td class="ctrl">多行输入框，直接粘贴整串 Cookie；开头的 <code>Cookie:</code> 会自动去掉。四种免费内容一般用不上，<b>留空也能下</b>。勾了“在这台电脑上记住 Cookie”才会明文写进工具同目录的 <code>下载器设置.json</code>，公用电脑不要勾。</td></tr>
+      <tr><td>保存目录</td><td>文件落在哪里</td><td class="ctrl">默认 <code>D:\人人钢琴曲谱数据</code>，目录不存在时会在开始下载那一刻自动创建。“浏览…”换目录，“打开保存目录”直接在资源管理器里打开它。</td></tr>
+      <tr><td>下载内容</td><td>只列免 VIP 的几类</td><td class="ctrl">EOP、EOPM、五线谱大图 PNG、双手简谱大图 PNG 默认全勾。下面还有一个“缩略图 JPG（200×260）”，默认不勾——那是列表页的小图，不清楚，一般不需要。VIP 的四类只写在标题栏里作说明，既点不动，也永远不会被请求。</td></tr>
+      <tr><td>下载范围</td><td>这一轮下哪些曲谱</td><td class="ctrl">二选一：按编号区间 / 指定编号，详见下一节。</td></tr>
+      <tr><td>节奏与重试</td><td>控制请求速度与容错</td><td class="ctrl">默认每首之间 1.5 秒、每个文件之间 0.3 秒、失败重试 3 次、网络超时 30 秒。想让站点更舒服就调大间隔。下面的“仅预检”只统计有哪些文件、不真正下载，适合先看规模。</td></tr>
+      <tr><td>按钮组</td><td>手动控制任务</td><td class="ctrl">开始下载 / 停止 / 打开保存目录。任务跑起来后“开始下载”变灰；“停止”会让当前文件下完再收尾，不会留半个坏文件。</td></tr>
+      <tr><td>进度与状态</td><td>看跑到哪了</td><td class="ctrl">进度条按“已处理 / 总数”推进，下面一行显示 完成几首、无可用文件几首、跳过几个编号、用时与平均速度。</td></tr>
+      <tr><td>运行日志</td><td>每一步都留痕</td><td class="ctrl">每个编号的判定结果与失败原因都写在这里，绿色是通过、红色是失败或跳过。遇到问题，先看日志最后几行。</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===== 两种取谱方式 ===== -->
+<section>
+  <p class="eyebrow">RANGE</p>
+  <h2>两种取谱方式</h2>
+  <p class="sub">全站约两万首，不建议一口气跑完。按编号分批，比如今天跑 1–500、明天接着 501，中途停下也不怕。</p>
+  <ul class="modes">
+    <li class="mode"><b>按编号区间</b><span>填起止编号，中间不存在的会自动跳过。默认 1 到 20300。想控制节奏就分几天跑，下次接着上次的尾巴。</span><code>1 到 500 = 500 个编号</code></li>
+    <li class="mode"><b>指定编号</b><span>想下哪几首就填哪几个，区间与单个编号可以混着写；逗号、空格、换行都能当分隔符。补漏最快。</span><code>1-50, 100, 20272</code></li>
+  </ul>
+  <p class="sub" style="margin-top:26px">
+    曲谱编号就是网址里 <code>Music-20272.html</code> 的那串数字。在站点的曲谱页上翻到一首，看地址栏就能读到。
+  </p>
+</section>
+
+<!-- ===== 输出结构 ===== -->
+<section>
+  <p class="eyebrow">ON DISK</p>
+  <h2>硬盘上会多出什么</h2>
+  <p class="sub">每首曲子一个文件夹，名字是“7 位补齐编号-曲名”；这一首的全部文件都在里面，不会散落一地。</p>
+  <pre>D:\人人钢琴曲谱数据\
+├─ <span class="k">0020272-滨河东路-赵磊-焉栩嘉-张颜齐-贺俊雄-赵政豪-蒋熠铭\</span>
+│   0020272.eop<span class="c">                     ← 曲子本体</span>
+│   0020272.eopm<span class="c">                    ← 指法／教程包</span>
+│   0020272-w-b-1.png … 0020272-w-b-5.png<span class="c"> ← 五线谱大图 2500×3400，共 5 页</span>
+│   0020272-j-b-1.png … 0020272-j-b-4.png<span class="c"> ← 双手简谱大图 2381×3368，共 4 页</span>
+├─ <span class="k">0001674-生日快乐完整好听版\</span><span class="c">        ← 这首站点没有 EOPM，就不会有那个文件</span>
+├─ 曲谱清单.csv<span class="c">                        ← 每首一行：已获得哪些、状态、备注、时间</span>
+└─ 下载日志.txt<span class="c">                        ← 每个文件的判定结果与失败原因</span></pre>
+  <p class="sub" style="margin-top:26px">
+    每个文件都要过校验：<b>0 字节、被站点顶成 HTML 错误页、文件头魔数对不上</b>，一律判为失败并写下原因，绝不悄悄留个坏文件给你。
+    不存在的编号不会建空文件夹——站点对不存在的资源返回的是一张 1382 字节的伪页面，工具按内容识别，日志里写明“编号不存在”。
+  </p>
+</section>
+
+<!-- ===== 源码运行 ===== -->
+<section>
+  <p class="eyebrow">FROM SOURCE</p>
+  <h2>不想用 exe，也可以直接跑源码</h2>
+  <p class="sub">仓库里放着同一份 <code>人人钢琴曲谱下载器.py</code>。它<b>只用到 Python 标准库</b>，装了 Python 3.9+ 就能跑，不需要 <code>pip install</code> 任何东西，行为与 exe 完全一致。</p>
+  <pre><span class="c"># 没有依赖要装，直接开面板</span>
+python 人人钢琴曲谱下载器.py</pre>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section>
+  <p class="eyebrow">FAQ</p>
+  <h2>常见问题</h2>
+  <details open><summary>需要先装 Python 吗？</summary>
+    <p><b>不需要。</b>exe 已经把 Python 运行时一起打包好了，约 10.7 MB 单文件，双击即用。想跑源码也不难——脚本不用任何第三方库，不用 <code>pip install</code>。</p></details>
+  <details><summary>杀毒软件报毒、提示文件不安全，怎么办？</summary>
+    <p>PyInstaller 打包出来的 exe 被误报是常见现象。<b>你完全可以改用源码运行</b>——仓库里的 .py 与 exe 是同一份代码，<code>python 人人钢琴曲谱下载器.py</code> 得到的面板一模一样。</p></details>
+  <details><summary>下到的图是列表页那种小缩略图吗？</summary>
+    <p><b>不是。</b>工具抓的是完整曲谱大图：五线谱 <b>2500×3400</b>、双手简谱 <b>2381×3368</b>，每页一张 PNG，放大看音符合唱线都清楚。列表页那种 200×260 的小图是面板里另一个可选项，默认不勾。</p></details>
+  <details><summary>下到一半关掉了，要从头再来吗？</summary>
+    <p><b>不用。</b>工具不写“已完成”标记文件，而是每次运行时检查文件是否已存在、大小是否为零、文件头魔数对不对——通过就跳过，进度里的“跳过”计数看得见。重复运行不会重复下载，下到一半断了也会从缺的那几页续上。</p></details>
+  <details><summary>为什么有的曲子只有一张图，有的有五六张？</summary>
+    <p>张数由曲谱本身的长度决定。工具从曲谱页上那句“共 N 张”读取真实页数，再按编号逐页去取，不会多下也不会漏下。</p></details>
+  <details><summary>编号填错了会怎样？</summary>
+    <p>会被跳过，不会卡住、也不会建一堆空文件夹。站点对不存在的资源不返回 404，而是返回一张 1382 字节的 HTML 页，工具按内容识别它，日志里写明“编号不存在”。所以填区间时大胆填，遇到空号自己就让过去了。</p></details>
+  <details><summary>能顺手把 MP3、PDF 也下了吗？</summary>
+    <p><b>不能，这是刻意的。</b>这四类在站内属于会员内容，页面上没有免费入口。工具不去猜地址、不去试接口、不去绕验证——需要这些文件请走站点的官方付费渠道。</p></details>
+  <details><summary>一次下全站两万首要多久？</summary>
+    <p>取决于你设的间隔。按默认的“每首之间 1.5 秒 + 每个文件之间 0.3 秒”估算，全站跑完是十几个小时量级。所以更推荐<b>按编号区间分批</b>跑，随时能停，下次接着下。</p></details>
+</section>
+
+<footer>
+  <p>本工具只抓取站点公开页面上的免费下载链接，用于个人学习与收藏。请遵守网站服务条款，把请求间隔放得宽一些，不要高频请求。</p>
+  <p>本工具与人人钢琴网（everyonepiano.cn）没有从属关系，也未获得其授权或认可；曲谱版权归原权利人所有。</p>
+  <div class="links">
+    <a href="https://github.com/chenzhuanxin/everyonepiano-sheet-downloader">GitHub 仓库</a>
+    <a href="https://github.com/chenzhuanxin/everyonepiano-sheet-downloader/releases/latest">最新版本下载</a>
+    <a href="https://github.com/chenzhuanxin/everyonepiano-sheet-downloader/issues">反馈问题</a>
+    <a href="https://www.everyonepiano.cn/Music.html">人人钢琴网曲谱库</a>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

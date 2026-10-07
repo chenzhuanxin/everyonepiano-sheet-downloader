@@ -1,0 +1,4 @@
+_shots/
+__pycache__/
+*.pyc
+_selftest_out/
