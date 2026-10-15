@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/logo.png" width="120" alt="everyonepiano-sheet-downloader"></p>
+
 # 人人钢琴网 · 免费曲谱下载器
 
 把 [人人钢琴网](https://www.everyonepiano.cn/Music.html)（everyonepiano.cn）上**不需要 VIP** 的曲谱成批下载到本地硬盘。
